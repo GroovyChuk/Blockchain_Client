@@ -48,7 +48,7 @@ public class CompanyScreen {
     @FXML
     private ListView<String> request_list;
     ArrayList<PersonalData> personalDataList = new ArrayList<>();
-    ArrayList<String> receivedWalletData = new ArrayList<>();
+    ArrayList<RequestedData> receivedWalletData = new ArrayList<>();
 
     @FXML
     private void initialize() throws IOException {
@@ -90,7 +90,7 @@ public class CompanyScreen {
                 int block = (int) request.getReqestedInTransaction().get("block");
                 int transaction = (int) request.getReqestedInTransaction().get("transaction");
                 if (block == blockIndex.intValue() && transaction == transactionIndex.intValue()){
-                    receivedWalletData.add(request.getRequestedWallet());
+                    receivedWalletData.add(request);
                     JSONObject privateKey = new JSONObject();
                     JSONArray keyArray = (JSONArray) key.get("privateKey");
                     privateKey.put("n",keyArray.get(0));
@@ -267,9 +267,11 @@ public class CompanyScreen {
 
     public ArrayList<PersonalData> getPersonalData(JSONArray chain){
         ArrayList<PersonalData> temp = new ArrayList<>();
-        for (String adress : receivedWalletData) {
+        for (RequestedData data : receivedWalletData) {
             PersonalData p = new PersonalData();
-            p.setDataFromJSON(chain, adress);
+            p.setDataFromJSON(chain, data.getRequestedWallet());
+            if (data.getEncryptedPersonal() > 0)
+                p.decryptData(123123);
             temp.add(p);
         }
         return temp;

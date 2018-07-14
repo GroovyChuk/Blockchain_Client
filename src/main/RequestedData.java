@@ -13,10 +13,22 @@ public class RequestedData {
     private boolean creditInformation;
     private JSONObject privateKey;
     private JSONObject reqestedInTransaction;
-    private int encryptedPersonal;
-    private int encryptedCredit;
+    private int encryptedPersonal = 0;
+    private int encryptedCredit = 0;
     private int decryptedPersonal;
     private int decryptedCredit;
+
+    public boolean isHasPrivateKey() {
+        return hasPrivateKey;
+    }
+
+    public int getDecryptedPersonal() {
+        return decryptedPersonal;
+    }
+
+    public int getDecryptedCredit() {
+        return decryptedCredit;
+    }
 
     private boolean hasPrivateKey = false;
 

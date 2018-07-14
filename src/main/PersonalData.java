@@ -85,6 +85,26 @@ public class PersonalData {
         return object;
     }
 
+    public void encryptData(int privateKey){
+        String key = privateKey + "thisisakey"; // 128 bit key
+        this.firstName = Encryptor.encrypt(key, App.initVector, this.firstName);
+        this.surname = Encryptor.encrypt(key, App.initVector, this.surname);
+        this.dateOfBirth = Encryptor.encrypt(key, App.initVector, this.dateOfBirth);
+        this.city = Encryptor.encrypt(key, App.initVector, this.city);
+        this.zip = Encryptor.encrypt(key, App.initVector, this.zip);
+        this.street = Encryptor.encrypt(key, App.initVector, this.street);
+    }
+
+    public void decryptData(int privateKey){
+        String key = privateKey + "thisisakey"; // 128 bit key
+        this.firstName = Encryptor.decrypt(key, App.initVector, this.firstName);
+        this.surname = Encryptor.decrypt(key, App.initVector, this.surname);
+        this.dateOfBirth = Encryptor.decrypt(key, App.initVector, this.dateOfBirth);
+        this.city = Encryptor.decrypt(key, App.initVector, this.city);
+        this.zip = Encryptor.decrypt(key, App.initVector, this.zip);
+        this.street = Encryptor.decrypt(key, App.initVector, this.street);
+    }
+
     public void setDataFromJSON(JSONArray array, String adress){
         if (array != null)  {
             for (int block = 0; block < array.size(); block++) {

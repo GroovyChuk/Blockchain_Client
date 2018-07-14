@@ -95,6 +95,7 @@ public class MainScreen {
             public void handle(ActionEvent event) {
                 personalData = new PersonalData(surname.getText(), firstName.getText(), dateOfBirth.getText(), city.getText(), zip.getText(), street.getText());
                 JSONObject data = new JSONObject();
+                personalData.encryptData(App.privatePersonal);
                 data.put("personalInformation", personalData.toJSON());
                 data.put("creditInformation", new JSONObject());
                 data.put("type", "U");

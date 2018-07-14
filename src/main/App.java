@@ -18,8 +18,9 @@ public class App extends Application {
     public static String CompanyIP = "http://localhost:5000";
     public static String adress = "myWallet";
     public static String companyAdress = "companyWallet";
-    public static int privatePersonal = 123;
-    public static int privateCredit = 321;
+    public static int privatePersonal = 123123;
+    public static int privateCredit = 321321;
+    public static String initVector = "RandomInitVector";
     private Stage stage;
 
 
@@ -32,7 +33,7 @@ public class App extends Application {
         mainScene = new Scene(FXMLLoader.load(getClass().getResource("/layouts/main_screen.fxml")), 700, 400);
 
         window.setTitle("Client v0.1");
-        window.setScene(companyScene);
+        window.setScene(mainScene);
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
